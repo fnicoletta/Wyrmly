@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgfdyssr8cq6"]
+
+[ext_resource type="PackedScene" uid="uid://b2mj6d8sgitro" path="res://Assets/Village Buildings/Buildings.glb" id="1_1us3n"]
+
+[node name="Buildings" type="Node3D"]
+
+[node name="Buildings" parent="." instance=ExtResource("1_1us3n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144789, 0)
+
+[node name="Door_1" parent="Buildings" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.67349, 0.870691, 9.97956)
+
+[node name="Window_Full" parent="Buildings" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78075, 0.488836, 11.401)
+
+[node name="Building_1" parent="Buildings" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1244, 0, -17.6508)
+
+[node name="Tower" parent="Buildings" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2681, 0, -8.72688)
+
+[node name="Gazeebo" parent="Buildings" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7712, 0, -7.07814)
+
+[node name="Building_3" parent="Buildings" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6844, 0, 11.211)
+
+[node name="Building_4" parent="Buildings" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1865, 0, 0)
+
+[node name="Chimny" parent="Buildings" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81324, 0.764832, 7.56138)
+
+[node name="Building_2" parent="Buildings" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4769, 0, 0)
+
+[node name="Building_Shape_3_2_Story" parent="Buildings" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.815)
+
+[node name="Roof_3" parent="Buildings" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 10.7127)
+
+[node name="Building_Shape_2" parent="Buildings" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.8765)
+
+[node name="Roof_long" parent="Buildings" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -6.09819)
+
+[node name="Roof_Square" parent="Buildings" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 4.92963)
+
+[editable path="Buildings"]

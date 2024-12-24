@@ -1,0 +1,84 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b2mj6d8sgitro"
+path="res://.godot/imported/Buildings.glb-c08d35ec5b00501577c3ba3e7aa4cb8d.scn"
+
+[deps]
+
+source_file="res://Assets/Village Buildings/Buildings.glb"
+dest_files=["res://.godot/imported/Buildings.glb-c08d35ec5b00501577c3ba3e7aa4cb8d.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Building_1": {
+"generate/physics": true
+},
+"PATH:Building_2": {
+"generate/physics": true
+},
+"PATH:Building_3": {
+"generate/physics": true
+},
+"PATH:Building_4": {
+"generate/physics": true
+},
+"PATH:Building_Shape_1": {
+"generate/physics": true
+},
+"PATH:Building_Shape_2": {
+"generate/physics": true
+},
+"PATH:Building_Shape_3_2_Story": {
+"generate/physics": true
+},
+"PATH:Chimny": {
+"generate/physics": true
+},
+"PATH:Door_1": {
+"generate/physics": true
+},
+"PATH:Gazeebo": {
+"generate/physics": true
+},
+"PATH:Roof_3": {
+"generate/physics": true
+},
+"PATH:Roof_Square": {
+"generate/physics": true
+},
+"PATH:Roof_long": {
+"generate/physics": true
+},
+"PATH:Tower": {
+"generate/physics": true
+},
+"PATH:Window_Full": {
+"generate/physics": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

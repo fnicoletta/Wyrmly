@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://vhf3v3vcdjgu"]
+
+[ext_resource type="Shader" path="res://Assets/Dithering/dithering.gdshader" id="1_p0b0f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ytv2o"]
+render_priority = 0
+shader = ExtResource("1_p0b0f")
+shader_parameter/color_depth = 6
+shader_parameter/dithering = true
+shader_parameter/resolution_scale = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_bfwme"]
+material = SubResource("ShaderMaterial_ytv2o")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="Dithering" type="MeshInstance3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_bfwme")
