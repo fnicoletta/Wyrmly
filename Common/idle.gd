@@ -2,10 +2,11 @@ extends State
 
 
 @onready var state_machine: Node = $".."
+@onready var animation_handler: Node = $"../../AnimationHandler"
 
 
 func enter():
-	state_machine.playback.travel("Idle")
+	animation_handler.travel("Idle")
 
 
 func physics_process(delta: float) -> void:

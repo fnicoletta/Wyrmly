@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx1b74pcfwt8q"]
+
+[ext_resource type="Script" path="res://Components/Interactable/Door/door.gd" id="1_h5m8b"]
+[ext_resource type="AudioStream" uid="uid://iue5qwm7r3sk" path="res://Assets/SFX/Creaking Door (5).mp3" id="2_l6yu0"]
+[ext_resource type="Script" path="res://Levels/Hub/Town/door_audio.gd" id="3_7k0tw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkc54"]
+size = Vector3(1.05176, 1.69678, 1)
+
+[node name="Door" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_h5m8b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vkc54")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l6yu0")
+bus = &"Doors"
+script = ExtResource("3_7k0tw")
+
+[node name="Spawn" type="Marker3D" parent="."]
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
+[connection signal="interacted" from="." to="AudioStreamPlayer" method="_on_tower_door_interacted"]

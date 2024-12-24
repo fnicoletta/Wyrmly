@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://mpe306362tta"]
+
+[ext_resource type="Texture2D" uid="uid://chv718pv6cn1d" path="res://Assets/Textures/Bricks/Bricks_01-128x128.png" id="1_3xn2t"]
+[ext_resource type="Script" path="res://Components/Level/Level.gd" id="1_5w7nw"]
+[ext_resource type="PackedScene" uid="uid://bx1b74pcfwt8q" path="res://Components/Interactable/Door/door.tscn" id="2_y8qro"]
+[ext_resource type="PackedScene" uid="uid://cttfwb8i8q8rt" path="res://Entities/Player/player.tscn" id="4_1sdp3"]
+[ext_resource type="PackedScene" uid="uid://bsgrxjiivfphj" path="res://Entities/GorthagBonecrusher/gorthag_bonecrusher.tscn" id="6_ovc5j"]
+[ext_resource type="AudioStream" uid="uid://s8dn2mtxodp0" path="res://Assets/Music/atmosphere-dark-fantasy-dungeon-synth-248210.mp3" id="6_ox3co"]
+[ext_resource type="PackedScene" uid="uid://b30786ftwb8j7" path="res://Items/Torch/torch.tscn" id="7_1yd5k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_niq25"]
+albedo_texture = ExtResource("1_3xn2t")
+uv1_triplanar = true
+
+[node name="WyrmlyHQ" type="Node3D"]
+script = ExtResource("1_5w7nw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_niq25")
+
+[node name="Player" parent="." instance=ExtResource("4_1sdp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69463, 0)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door_Entrance" parent="Doors" instance=ExtResource("2_y8qro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12094, 1.7017, 0)
+destination_level = "hub"
+destination_door_tag = "Tower"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ox3co")
+autoplay = true
+bus = &"Town Music"
+
+[node name="GorthagBonecrusher" parent="." instance=ExtResource("6_ovc5j")]
+transform = Transform3D(-0.178074, 0, -1.48939, 0, 1.5, 0, 1.48939, 0, -0.178074, 6, 0.559279, 4)
+
+[node name="Torch" parent="." instance=ExtResource("7_1yd5k")]
+transform = Transform3D(0.0965464, -0.175154, 0, 0.175154, 0.0965464, 0, 0, 0, 0.2, 5.87129, 1.31646, 3.63884)

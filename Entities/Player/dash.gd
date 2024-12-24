@@ -6,9 +6,11 @@ var _dash_direction: Vector3 = Vector3.ZERO
 @onready var state_machine: Node = $".."
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown: Timer = $DashCooldown
+@onready var whoosh: AudioStreamPlayer = $"../../Audio/Whoosh"
 
 
 func enter() -> void:
+	whoosh.play(0.22)
 	player.can_dash = false
 	dash_cooldown.start()
 	dash_timer.start()

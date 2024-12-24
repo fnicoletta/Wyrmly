@@ -4,11 +4,20 @@ extends State
 var _current_speed: float
 
 @onready var state_machine: Node = $".."
+@onready var animation_handler: Node = $"../../AnimationHandler"
+@onready var footsteps: AudioStreamPlayer = $"../../Audio/Footsteps"
 
 
 func enter() -> void:
+	footsteps.play()
+	footsteps.pitch_scale = 1.3
 	_current_speed = player.walk_speed
-	state_machine.playback.travel("Walk")
+	animation_handler.travel("Walk")
+
+
+func exit() -> void:
+	footsteps.stop()
+
 
 
 func physics_process(delta: float) -> void:
@@ -21,10 +30,12 @@ func physics_process(delta: float) -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("sprint"):
-		state_machine.playback.travel("Sprint")
+		footsteps.pitch_scale = 1.9
+		animation_handler.travel("Sprint")
 		_current_speed = player.walk_speed * player.run_multiplier
 	if Input.is_action_just_released("sprint"):
-		state_machine.playback.travel("Walk")
+		footsteps.pitch_scale = 1.5
+		animation_handler.travel("Walk")
 		_current_speed = player.walk_speed
 	if Input.is_action_just_pressed("dash"):
 		state_machine.transition_to("Dash", player.can_dash)

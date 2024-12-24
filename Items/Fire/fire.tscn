@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl874ajgbqcir"]
+
+[ext_resource type="Shader" uid="uid://2bvohmfojgw7" path="res://Items/Fire/fire_shader.tres" id="1_4srg6"]
+[ext_resource type="Texture2D" uid="uid://5fo5dn0vsvur" path="res://Assets/Textures/Fire/Voronoi01.png" id="2_8gs2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3j2rd"]
+render_priority = 0
+shader = ExtResource("1_4srg6")
+shader_parameter/DissolveTiling = Vector2(0.25, 0.2)
+shader_parameter/DissolveSpeed = Vector2(0, 1)
+shader_parameter/DissolveAmount = 0.382
+shader_parameter/DissolveTexture = ExtResource("2_8gs2v")
+
+[sub_resource type="Curve" id="Curve_x27bj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.193038, 0.991814), 0.0, 0.0, 0, 0, Vector2(0.993671, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m02vg"]
+curve = SubResource("Curve_x27bj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmqwh"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+gravity = Vector3(0, 2, 0)
+scale_min = 0.15
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_m02vg")
+color = Color(4, 1.25, 0.6, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wdiyq"]
+
+[node name="Fire" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_3j2rd")
+amount = 20
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_mmqwh")
+draw_pass_1 = SubResource("QuadMesh_wdiyq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(4, 1.25, 0.6, 1)
+distance_fade_enabled = true
+distance_fade_begin = 1.0

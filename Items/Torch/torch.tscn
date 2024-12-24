@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b30786ftwb8j7"]
+
+[ext_resource type="PackedScene" uid="uid://bd8aqruiqmfi1" path="res://Assets/ps1psx_wooden_torch.glb" id="1_4btbk"]
+[ext_resource type="PackedScene" uid="uid://bl874ajgbqcir" path="res://Items/Fire/fire.tscn" id="2_p7p8s"]
+
+[node name="Torch" instance=ExtResource("1_4btbk")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Fire" parent="." index="1" instance=ExtResource("2_p7p8s")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.47302, 0)

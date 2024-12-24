@@ -11,8 +11,25 @@ config_version=5
 [application]
 
 config/name="Wyrmly"
-run/main_scene="res://Levels/world.tscn"
+run/main_scene="res://Levels/Hub/hub.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+NavigationManager="*res://Components/Globals/navigation_manager.gd"
+TransitionScreen="*res://Components/TransitionScreen/transition_screen.tscn"
+
+[dotnet]
+
+project/assembly_name="Wyrmly"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/codex/plugin.cfg", "res://addons/func_godot/plugin.cfg")
+
+[func_godot]
+
+default_map_settings="res://addons/func_godot/func_godot_default_map_settings.tres"
 
 [input]
 

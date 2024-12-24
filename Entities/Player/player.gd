@@ -17,9 +17,11 @@ var _target_yaw: float = 0.0
 var _target_pitch: float = 0.0
 
 @onready var camera_pivot: Node3D = $CameraPivot
+@onready var ui: Control = $UI
 
 
 func _ready() -> void:
+	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -51,5 +53,15 @@ func rotate_camera(mouse_motion: Vector2):
 		return
 		
 	_target_yaw -= deg_to_rad(mouse_motion.x * mouse_sensitivity)
-	_target_pitch -= mouse_motion.y * mouse_sensitivity
+	_target_pitch -= -mouse_motion.y * mouse_sensitivity
 	_target_pitch = clamp(_target_pitch, -89.0, 89.0)
+
+
+func _on_tower_door_interacted(body: Variant) -> void:
+	ui.modulate = "#000"
+	
+	position = Vector3.ZERO
+
+
+func _on_spawn(position: Vector3):
+	global_position = position

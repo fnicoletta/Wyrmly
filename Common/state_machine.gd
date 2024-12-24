@@ -6,9 +6,6 @@ extends Node
 
 var current_state = null
 
-@onready var animation_tree: AnimationTree = $"../PlayerMesh/AnimationTree"
-@onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
-
 
 func _ready():
 	current_state = get_node(initial_state)

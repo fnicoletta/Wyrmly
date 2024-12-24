@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsgrxjiivfphj"]
+
+[ext_resource type="PackedScene" uid="uid://nwsbj2r6qmo8" path="res://Assets/mrzGodot.glb" id="1_kpuqi"]
+
+[node name="GorthagBonecrusher" instance=ExtResource("1_kpuqi")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(0.787705, -3.80108e-06, -9.13872e-06, 0.616053)
+bones/3/rotation = Quaternion(0.0149661, 0.29443, 0.953529, -0.062211)
+bones/4/rotation = Quaternion(-0.194755, 0.0119174, -0.0414012, 0.979905)
+bones/5/rotation = Quaternion(0.619766, -0.0991231, 0.0414736, 0.777396)
+bones/18/rotation = Quaternion(-0.0139317, 0.288996, 0.955481, 0.0578217)
+bones/30/rotation = Quaternion(0.0997726, 0.00639387, -0.0136894, 0.994896)
+bones/51/rotation = Quaternion(0.208122, 5.1703e-07, 2.28498e-06, 0.978103)
+bones/53/rotation = Quaternion(-4.58847e-06, -0.0775481, -2.15131e-06, 0.996989)
+bones/54/rotation = Quaternion(-0.227876, -0.000126689, -0.000199828, 0.97369)
+bones/55/rotation = Quaternion(-1.22548e-07, -0.154762, -5.02208e-08, 0.987952)
+bones/57/rotation = Quaternion(-1.83853e-06, 0.127466, 5.99511e-07, 0.991843)
+bones/58/rotation = Quaternion(-0.0269395, -0.0255164, 0.800175, 0.598618)
+bones/60/rotation = Quaternion(4.77303e-07, 0.109158, 1.27729e-07, 0.994024)
+bones/61/rotation = Quaternion(-1.5639e-06, -0.109158, -4.53203e-07, 0.994024)
+bones/65/rotation = Quaternion(-0.244264, 0.000133471, 0.000195473, 0.969709)
+bones/67/rotation = Quaternion(-4.69103e-07, 0.636629, 0.77117, -8.69977e-06)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Key|0_T-Pose"

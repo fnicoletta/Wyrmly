@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7ktldgtvsd7r"]
+
+[ext_resource type="Texture2D" uid="uid://46ldbfnlhn5v" path="res://Assets/Textures/Grass/Grass_12-128x128.png" id="1_sp5ex"]
+[ext_resource type="Texture2D" uid="uid://g3js2sgi1w52" path="res://Assets/Textures/Grass/Grass_01-128x128.png" id="2_7wmoy"]
+[ext_resource type="MeshLibrary" uid="uid://par5xo0sst32" path="res://Assets/Village Buildings/buildings_library.tres" id="3_twvo7"]
+[ext_resource type="AudioStream" uid="uid://cq4qd0yfkmvo2" path="res://Levels/Hub/Town/dark-fantasy-ambient-dungeon-synth-248213.mp3" id="4_x13fc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ageda"]
+albedo_texture = ExtResource("1_sp5ex")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpi5v"]
+albedo_texture = ExtResource("2_7wmoy")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntple"]
+albedo_texture = ExtResource("2_7wmoy")
+uv1_triplanar = true
+
+[node name="Town" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_ageda")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 24.5)
+use_collision = true
+collision_layer = 3
+size = Vector3(50, 3, 1)
+material = SubResource("StandardMaterial3D_mpi5v")
+
+[node name="Wall2" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -24.5)
+use_collision = true
+collision_layer = 3
+size = Vector3(50, 3, 1)
+material = SubResource("StandardMaterial3D_ntple")
+
+[node name="Wall3" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.5, 1.5, 0)
+use_collision = true
+collision_layer = 3
+size = Vector3(50, 3, 1)
+material = SubResource("StandardMaterial3D_ntple")
+
+[node name="Wall4" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24.5, 1.5, 0)
+use_collision = true
+collision_layer = 3
+size = Vector3(50, 3, 1)
+material = SubResource("StandardMaterial3D_ntple")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98, 0)
+mesh_library = ExtResource("3_twvo7")
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(7, 65532, 8, 2, 65528, 6, 8, 65529, 4, 4, 1, 3, 65533, 65528, 5, 65532, 65532, 13)
+}
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x13fc")
+autoplay = true
+bus = &"Town Music"
+parameters/looping = true

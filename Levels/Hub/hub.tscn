@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://2m4pwt24h10d"]
+
+[ext_resource type="Script" path="res://Components/Level/Level.gd" id="1_lcmat"]
+[ext_resource type="PackedScene" uid="uid://vhf3v3vcdjgu" path="res://Assets/Dithering/dithering.tscn" id="1_ro4u6"]
+[ext_resource type="PackedScene" uid="uid://c7ktldgtvsd7r" path="res://Levels/Hub/Town/town.tscn" id="2_7ahd8"]
+[ext_resource type="PackedScene" uid="uid://cttfwb8i8q8rt" path="res://Entities/Player/player.tscn" id="3_ivky7"]
+[ext_resource type="PackedScene" uid="uid://bx1b74pcfwt8q" path="res://Components/Interactable/Door/door.tscn" id="4_wb4cl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nrxkq"]
+sky_top_color = Color(0.442402, 0.368278, 0.785836, 1)
+sky_horizon_color = Color(0.6606, 0.634319, 0.729709, 1)
+sky_energy_multiplier = 0.4
+ground_horizon_color = Color(0.6606, 0.634319, 0.729709, 1)
+
+[sub_resource type="Sky" id="Sky_gl1es"]
+sky_material = SubResource("ProceduralSkyMaterial_nrxkq")
+
+[sub_resource type="Environment" id="Environment_imuli"]
+background_mode = 2
+sky = SubResource("Sky_gl1es")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.979017, 0.429977, 1, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 3.0
+volumetric_fog_length = 32.0
+
+[node name="Hub" type="Node3D"]
+script = ExtResource("1_lcmat")
+
+[node name="Dithering" parent="." instance=ExtResource("1_ro4u6")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_imuli")
+
+[node name="Town" parent="." instance=ExtResource("2_7ahd8")]
+
+[node name="Player" parent="." instance=ExtResource("3_ivky7")]
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door_Tower" parent="Doors" instance=ExtResource("4_wb4cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.03676, 1.16774, 1.04974)
+destination_level = "hq"
+destination_door_tag = "Entrance"
+
+[node name="Spawn" parent="Doors/Door_Tower" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.866478, -1.04872)
+
+[editable path="Dithering"]
+[editable path="Doors/Door_Tower"]
