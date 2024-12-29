@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb76u6o3yri6q"]
+
+[ext_resource type="Script" path="res://Common/state_machine.gd" id="1_f4ksa"]
+[ext_resource type="Script" path="res://Common/idle.gd" id="2_u3suo"]
+[ext_resource type="Script" path="res://Common/move.gd" id="3_mkhhy"]
+[ext_resource type="Script" path="res://Entities/Player/dash.gd" id="4_6umv3"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_f4ksa")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_u3suo")
+player = NodePath("")
+
+[node name="Move" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_mkhhy")
+player = NodePath("")
+
+[node name="Dash" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_6umv3")
+player = NodePath("")
+
+[node name="DashTimer" type="Timer" parent="Dash"]
+wait_time = 0.15
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="Dash"]
+wait_time = 0.663
+one_shot = true
+
+[connection signal="timeout" from="Dash/DashTimer" to="Dash" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Dash/DashCooldown" to="Dash" method="_on_dash_cooldown_timeout"]

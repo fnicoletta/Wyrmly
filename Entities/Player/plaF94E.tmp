@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://cttfwb8i8q8rt"]
+
+[ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_aspn1"]
+[ext_resource type="Script" path="res://Common/state_machine.gd" id="2_4gkpn"]
+[ext_resource type="Script" path="res://Common/idle.gd" id="3_rf20p"]
+[ext_resource type="Script" path="res://Common/move.gd" id="4_7hx12"]
+[ext_resource type="Script" path="res://Entities/Player/dash.gd" id="5_xn2oi"]
+[ext_resource type="Script" path="res://Entities/Player/animation_handler.gd" id="6_ht5un"]
+[ext_resource type="Script" path="res://Entities/Player/animation_controller.gd" id="8_6pde4"]
+[ext_resource type="PackedScene" uid="uid://bbr4l11hp65ch" path="res://Items/Weapon/weapon.tscn" id="8_h1ndb"]
+[ext_resource type="PackedScene" uid="uid://dn7epji6caa1j" path="res://Components/Interaction/interaction.tscn" id="8_h7bub"]
+[ext_resource type="Resource" uid="uid://en8icscgdoxs" path="res://Items/Weapon/Weapons/Sickle/sickle.tres" id="9_4evj0"]
+[ext_resource type="Script" path="res://Entities/Player/reticle.gd" id="9_7s5t5"]
+[ext_resource type="AudioStream" uid="uid://ddyfgukjw7t7s" path="res://Entities/Player/Mud Footsteps.mp3" id="10_oiv7x"]
+[ext_resource type="Texture2D" uid="uid://bupr8fq7yqim3" path="res://Entities/Player/hand.png" id="10_rvh3j"]
+[ext_resource type="AudioStream" uid="uid://b53kjlg0tys6s" path="res://Entities/Player/whoosh.mp3" id="11_wv8js"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rh840"]
+radius = 0.15
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cojj7"]
+radius = 0.15
+height = 1.5
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_aspn1")
+walk_speed = 2.0
+run_multiplier = 2.0
+dash_speed = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00690812, 0.682434, 0)
+mesh = SubResource("CapsuleMesh_rh840")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00690812, 0.682434, 0)
+shape = SubResource("CapsuleShape3D_cojj7")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_4gkpn")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_rf20p")
+player = NodePath("../..")
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_7hx12")
+player = NodePath("../..")
+
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_xn2oi")
+player = NodePath("../..")
+
+[node name="DashTimer" type="Timer" parent="StateMachine/Dash"]
+wait_time = 0.15
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/Dash"]
+wait_time = 0.663
+one_shot = true
+
+[node name="AnimationHandler" type="Node" parent="."]
+script = ExtResource("6_ht5un")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, -0.00182773, 1.17552, -0.107307)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 0, 0, 0)
+cull_mask = 1048573
+
+[node name="Interaction" parent="CameraPivot/Camera3D" instance=ExtResource("8_h7bub")]
+
+[node name="WeaponSlot" type="Node3D" parent="CameraPivot/Camera3D"]
+
+[node name="Weapon" parent="CameraPivot/Camera3D/WeaponSlot" instance=ExtResource("8_h1ndb")]
+transform = Transform3D(1.81993e-08, 0, -0.02, 0, 0.05, 0, 0.02, 0, 1.81993e-08, 0.15, -0.2, -0.3)
+weapon_type = ExtResource("9_4evj0")
+sway_speed = null
+reset = null
+
+[node name="AnimationController" type="Node" parent="."]
+script = ExtResource("8_6pde4")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Reticle" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_7s5t5")
+dot_color = Color(1, 1, 1, 0.388235)
+
+[node name="InteractReticle" type="TextureRect" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -27.0
+offset_right = 601.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("10_rvh3j")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_oiv7x")
+bus = &"Footsteps"
+parameters/looping = true
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_wv8js")
+bus = &"Whoosh"
+
+[connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Dash" method="_on_dash_cooldown_timeout"]

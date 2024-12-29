@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://6mrcn74p7gju"]
+
+[ext_resource type="Script" path="res://Items/Weapon/WeaponResource.gd" id="1_mlogo"]
+
+[resource]
+script = ExtResource("1_mlogo")
+damage = 10.0

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Components/Level/Level.gd" id="1_5w7nw"]
 [ext_resource type="PackedScene" uid="uid://bx1b74pcfwt8q" path="res://Components/Interactable/Door/door.tscn" id="2_y8qro"]
 [ext_resource type="PackedScene" uid="uid://cttfwb8i8q8rt" path="res://Entities/Player/player.tscn" id="4_1sdp3"]
-[ext_resource type="PackedScene" uid="uid://bsgrxjiivfphj" path="res://Entities/GorthagBonecrusher/gorthag_bonecrusher.tscn" id="6_ovc5j"]
+[ext_resource type="PackedScene" uid="uid://bsgrxjiivfphj" path="res://Entities/NPCs/GorthagBonecrusher/gorthag_bonecrusher.tscn" id="6_ovc5j"]
 [ext_resource type="AudioStream" uid="uid://s8dn2mtxodp0" path="res://Assets/Music/atmosphere-dark-fantasy-dungeon-synth-248210.mp3" id="6_ox3co"]
 [ext_resource type="PackedScene" uid="uid://b30786ftwb8j7" path="res://Items/Torch/torch.tscn" id="7_1yd5k"]
 
@@ -29,14 +29,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69463, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12094, 1.7017, 0)
 destination_level = "hub"
 destination_door_tag = "Tower"
+prompt_message = "Exit Wyrmly HQ?"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ox3co")
 autoplay = true
 bus = &"Town Music"
 
-[node name="GorthagBonecrusher" parent="." instance=ExtResource("6_ovc5j")]
-transform = Transform3D(-0.178074, 0, -1.48939, 0, 1.5, 0, 1.48939, 0, -0.178074, 6, 0.559279, 4)
+[node name="NPCs" type="Node" parent="."]
 
-[node name="Torch" parent="." instance=ExtResource("7_1yd5k")]
+[node name="Torch" parent="NPCs" instance=ExtResource("7_1yd5k")]
 transform = Transform3D(0.0965464, -0.175154, 0, 0.175154, 0.0965464, 0, 0, 0, 0.2, 5.87129, 1.31646, 3.63884)
+
+[node name="GorthagBonecrusher" parent="NPCs" instance=ExtResource("6_ovc5j")]
+transform = Transform3D(-0.178074, 0, -1.48939, 0, 1.5, 0, 1.48939, 0, -0.178074, 6, 0.559279, 4)

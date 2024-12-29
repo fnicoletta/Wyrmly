@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsgrxjiivfphj"]
+
+[ext_resource type="PackedScene" uid="uid://nwsbj2r6qmo8" path="res://Assets/mrzGodot.glb" id="1_kpuqi"]
+[ext_resource type="Script" path="res://Entities/NPCs/NPC.gd" id="2_q76xq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qwfbi"]
+radius = 0.2
+height = 1.0
+
+[node name="GorthagBonecrusher" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("2_q76xq")
+timeline = "GorthagTestTimeline"
+prompt_message = "Talk to Gorthag"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_qwfbi")
+
+[node name="Mesh" parent="." instance=ExtResource("1_kpuqi")]
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

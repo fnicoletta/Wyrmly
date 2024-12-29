@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=7 format=3 uid="uid://bm62m3vd0gxba"]
+
+[ext_resource type="AudioStream" uid="uid://cvumj2wdun7yc" path="res://Assets/SFX/cc0-371041__morganpurkis__single-gunshot-3.wav" id="1_7v37m"]
+[ext_resource type="Script" path="res://Items/Weapon/WeaponResource.gd" id="1_f8gc1"]
+[ext_resource type="AudioStream" uid="uid://counu6xs7ni2t" path="res://Assets/SFX/cc0-377145__nioczkus__pistol-draw-unholster.wav" id="2_8a16f"]
+[ext_resource type="PackedScene" uid="uid://yptwetvgvd51" path="res://Items/Weapon/Weapons/Deagle/deagle - viewmodel.glb" id="2_q5oj1"]
+[ext_resource type="AudioStream" uid="uid://d3vi2o7bmt2yc" path="res://Assets/SFX/cc0-276959__gfl7__pistol-reload-sound.mp3" id="3_64vhb"]
+[ext_resource type="PackedScene" uid="uid://brnhn032us7pg" path="res://Items/Weapon/Weapons/Deagle/deagle.glb" id="3_n5q6h"]
+
+[resource]
+script = ExtResource("1_f8gc1")
+damage = 10.0
+auto_fire = false
+max_fire_rate_ms = 50.0
+current_amo = 7
+magazine_capacity = 7
+reserve_amo = 999
+max_reserve_amo = 999
+view_model = ExtResource("2_q5oj1")
+view_model_position = Vector3(0, -0.26, 0.45)
+view_model_rotation = Vector3(0, -3.14159, 0)
+view_model_scale = Vector3(1, 1, 1)
+view_idle_anim = "Idle"
+view_equip_anim = "Unholster"
+view_attack_anim = "Shoot"
+view_reload_anim = "Reload"
+world_model = ExtResource("3_n5q6h")
+world_model_position = Vector3(-2.09808e-05, 18.5143, 2.99606)
+world_model_rotation = Vector3(1.09909e-15, -3.14159, 1.5708)
+world_model_scale = Vector3(7, 7, 7)
+attack_sound = ExtResource("1_7v37m")
+reload_sound = ExtResource("3_64vhb")
+equip_sound = ExtResource("2_8a16f")
